@@ -1,0 +1,34 @@
+#constants
+oofpez = 9e9
+gravity= 9.81
+qproton = 1.6e-19
+tapemass = 2e-4
+distance = .015
+# OBJECTS
+chargedParticle1 = sphere(pos=vec(0, 0, 0), radius=tapemass, color = color.blue)
+chargedParticle2 = sphere(pos=vec(0, 1.5e-2, 0), radius=tapemass, color = color.red)
+fa = arrow(pos=vec(0, 0, 0), axis=vec(0,1.5e-2,0), color=color.green)
+f2 = arrow(pos=vec(0, -1.5e-2, 0), axis=vec(0,-1.5e-2,0), color=color.green)
+# FUNCTIONS
+def charge1(chargedParticle1, observationLocation1):
+    r = chargedParticle1.pos - observationLocation1
+    rmag=sqrt(r.x**2+r.y**2+r.z**2)
+    qcharge1= ((tapemass*gravity)*(rmag**2)/(oofpez*qproton))
+    return qcharge1
+def charge2(chargedParticle2, observationLocation2):
+    r = chargedParticle2.pos - observationLocation2
+    rmag=sqrt(r.x**2+r.y**2+r.z**2)
+    qcharge2= ((tapemass*gravity)*(rmag**2)/(oofpez*qproton))
+    return qcharge2
+#NECESSARY CHARGE
+masssqred= tapemass**2
+chargequantity = sqrt(((tapemass*gravity) * (distance)**2)/(oofpez))
+print("The charge is q=", chargequantity)
+
+observationLocation1 = vec(0,1.5e-2,0)
+qcharge1 = charge1(chargedParticle1, observationLocation1)
+print("the charge for q1 is",qcharge1)
+
+observationLocation2 = vec(0,0,0)
+qcharge2 = charge2(chargedParticle2, observationLocation2)
+print("the charge for q2 is",qcharge2)
